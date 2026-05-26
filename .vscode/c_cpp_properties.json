@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "Windows (MinGW)",
+            "includePath": [
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "_WIN32",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "compilerPath": "C:/gcc/bin/gcc.exe",
+            "cStandard": "c11",
+            "intelliSenseMode": "windows-gcc-x64"
+        }
+    ],
+    "version": 4
+}
