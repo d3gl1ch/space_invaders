@@ -115,3 +115,123 @@ space_invaders/
 
 Спрайты **не используются** — все объекты нарисованы программно через GDI
 (`Rectangle`, `Polygon`, `SetPixel`). Папка `assets/` зарезервирована. 
+
+
+## 🔧 Компиляция
+
+### Требования
+
+- **Компилятор:** GCC (MinGW-w64) версии 8+
+- **Платформа:** Windows 7/10/11 (x86/x64)
+- **Стандарт:** C11
+- **IDE (опционально):** Visual Studio Code
+
+### Установка MinGW-w64 (если не установлен)
+
+#### Вариант 1 — MSYS2 (рекомендуется)
+
+1. Скачать с [https://www.msys2.org/](https://www.msys2.org/)
+2. Установить, затем в MSYS2 terminal выполнить:
+   ```bash
+   pacman -S mingw-w64-x86_64-gcc mingw-w64-x86_64-gdb
+   ```
+3. Добавить в PATH:
+   ```
+   C:\msys64\mingw64\bin
+   ```
+
+#### Вариант 2 — WinLibs
+
+Скачать с [winlibs.com](https://winlibs.com/) и добавить в PATH.
+
+---
+
+### 🔨 Способ 1: Через VS Code (рекомендуется)
+
+#### Быстрая компиляция
+
+1. Открыть папку проекта в VS Code:
+   ```
+   File → Open Folder → выбрать space_invaders/
+   ```
+
+2. Установить расширение **C/C++** (Microsoft):
+   - `Ctrl+Shift+X` → поиск "C/C++" → Install
+
+3. **Скомпилировать:**
+   ```
+   Ctrl+Shift+B
+   ```
+   Выбрать **"Build Space Invaders"**
+
+4. Готово! Запустится `space_invaders.exe`
+
+#### Отладка
+
+1. Поставить breakpoint (клик слева от номера строки)
+2. Нажать `F5` → выбрать **"Debug Space Invaders"**
+
+---
+
+### 🔨 Способ 2: build.bat (самый простой)
+
+Запустить из корневой папки:
+
+```batch
+build.bat
+```
+
+Скрипт автоматически:
+- Компилирует все `.c` файлы
+- Создаёт `space_invaders.exe`
+- Запускает игру
+
+---
+
+### 🔨 Способ 3: Командная строка вручную
+
+Открыть терминал в папке проекта и выполнить:
+
+```bash
+gcc -std=c11 -O2 -Wall -Wextra -mwindows ^
+    src/main.c src/game.c src/render.c src/input.c src/levels.c ^
+    -o space_invaders.exe ^
+    -lgdi32 -lmsimg32 -lwinmm -lm
+```
+
+**Пояснение флагов:**
+- `-std=c11` — стандарт C11
+- `-O2` — оптимизация
+- `-Wall -Wextra` — включить предупреждения
+- `-mwindows` — создать GUI-приложение (без консоли)
+- `-lgdi32 -lmsimg32 -lwinmm -lm` — подключить библиотеки
+
+---
+
+### 🔨 Способ 4: CMake
+
+```bash
+mkdir build
+cd build
+cmake .. -G "MinGW Makefiles"
+mingw32-make
+```
+
+Исполняемый файл появится в `build/SpaceInvaders.exe`.
+
+---
+
+### ⚙️ Настройка VS Code (если путь к GCC отличается)
+
+Если компилятор не найден, отредактировать `.vscode/c_cpp_properties.json`:
+
+```json
+"compilerPath": "C:/путь/к/gcc.exe"
+```
+
+Узнать путь:
+```bash
+where gcc
+```
+
+---
