@@ -7,7 +7,7 @@
 #include "render.h"
 #include "input.h"
 
-// Модульные переменные (static — допустимо в main-модуле)
+// Модульные переменные 
 static GameState g_state;
 static RenderContext g_rc;
 static BOOL g_rcInitialized = FALSE;
